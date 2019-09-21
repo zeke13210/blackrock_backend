@@ -14,8 +14,8 @@ from models import *
 @app.route('/', methods=['GET', 'POST'])
 def task():
     if request.method == 'GET':
-        return ('Hey, we have Flask in a Docker container!!!!')
-    elif request.method == 'POST'
+        return ('Hey, we have Flask in a Docker container')
+    # elif request.method == 'POST':
         # task = Task(task_id="123", name="The is the first task")
         # rds.session.add(task)
         # rds.session.commit()
