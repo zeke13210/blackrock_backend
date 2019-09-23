@@ -1,17 +1,26 @@
 from app import rds
+from sqlalchemy import Column, Integer, String, Enum, DateTime
+from datetime import datetime
+import enum
+
+class StatusEnum(enum.Enum):
+    PENDING = 1
+    ACTIVE = 2
+    COMPLETED = 3
 
 class Task(rds.Model):
     __tablename__ = 'tasks'
 
-    task_id = rds.Column(rds.Integer, primary_key=True)
-    name = rds.Column(rds.String(64), index=True)
-    description = rds.Column(rds.String(64))
-    priority = rds.Column(rds.Integer)
-    time = rds.Column(rds.String(64))
-    starttime = rds.Column(rds.String(64))
-    endtime = rds.Column(rds.String(64))
-    createdtime = rds.Column(rds.String(64))
-    status = rds.Column(rds.String(64))
+    task_id     = Column(Integer, primary_key=True)
+    name        = Column(String(64), index=True)
+    description = Column(String(200))
+    priority    = Column(Integer)
+    starttime   = Column(DateTime)
+    endtime     = Column(DateTime)
+    currenttime = Column(DateTime)
+    createdtime = Column(DateTime)
+    status      = Column(Enum(StatusEnum), default=StatusEnum.PENDING)
 
     def __repr__(self):
-        return '<User {}>'.format(self.name)
+        return '{}'.format(self.name)
+
