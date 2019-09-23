@@ -1,0 +1,10 @@
+FROM zeke13210/blackrock:latest
+
+RUN pip install flask_sqlalchemy
+RUN pip install flask_migrate
+
+WORKDIR '/app'
+
+COPY . .
+
+CMD [ "python", "app.py" ]

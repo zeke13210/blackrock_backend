@@ -13,6 +13,7 @@ app.debug = True
 from models import Task, StatusEnum
 
 
+
 @app.cli.command('db_create')
 def db_create():
     rds.create_all()
@@ -38,6 +39,7 @@ def db_seed():
                 priority=3,
                 status='PENDING'
                 )
+
     
     rds.session.add(tsk1)
     rds.session.add(tsk2)
