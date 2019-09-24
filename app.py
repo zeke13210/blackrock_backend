@@ -10,7 +10,7 @@ app.config.from_object(Config)
 rds = SQLAlchemy(app)
 app.debug = True
 
-from models import Task, StatusEnum
+from models import *
 
 
 
