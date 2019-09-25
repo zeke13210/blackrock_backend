@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from sqlalchemy import Column, Integer, String, Enum, DateTime
 from datetime import datetime, timedelta
-import enum, json
+import enum, json, os
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -11,7 +11,6 @@ rds = SQLAlchemy(app)
 app.debug = True
 
 from models import Task, StatusEnum
-
 
 
 @app.cli.command('db_create')
@@ -24,22 +23,37 @@ def db_drop():
     rds.drop_all()
     print('Database dropped!')
 
+@app.cli.command('db_showtable')
+def db_showtable():
+    print Task.__tablename__
+
 @app.cli.command('db_seed')
 def db_seed():
+
+    currenttime = datetime.now()
+    endtime = currenttime + timedelta(seconds=600)
+
     tsk1 = Task(
                 name='Cook Eggs',
                 description='Cooking eggs for the family',
                 priority=1,
-                status='ACTIVE'
+                status='ACTIVE',
+                starttime = currenttime,
+                currenttime = currenttime,
+                createdtime = currenttime,
+                endtime = endtime
                 )
 
     tsk2 = Task(
                 name='Boil Water',
                 description='Heating up water on the stove',
                 priority=3,
-                status='PENDING'
+                status='PENDING',
+                starttime = currenttime,
+                currenttime = currenttime,
+                createdtime = currenttime,
+                endtime = endtime
                 )
-
     
     rds.session.add(tsk1)
     rds.session.add(tsk2)
