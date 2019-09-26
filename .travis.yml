@@ -1,0 +1,20 @@
+language: generic
+sudo: required
+services:
+  - docker
+before install:
+  - docker build -t blackrock/backend -f Dockerfile.dev
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "BlackRockBackEnd"
+  env: "Blackrockbackend-env"
+  bucket_name: "elasticbeanstalk-us-east-1-398080922284"
+  bucket_path: "BlackRockBackEnd"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

@@ -10,7 +10,30 @@ app.config.from_object(Config)
 rds = SQLAlchemy(app)
 app.debug = True
 
-from models import Task, StatusEnum
+from models import *
+
+def task2Dict(row):
+    di = {
+        "task_id": row.task_id,
+        "name": row.name,
+        "description": row.description,
+        "priority": row.priority,
+        "starttime": row.starttime,
+        "endtime": row.endtime,
+        "currenttime": row.currenttime,
+        "createdtime": row.createdtime,
+        "status": row.status
+    }
+
+
+
+def taskConverter(o):
+    # datetime isn't serializable, so "toString" it
+    if isinstance(o, datetime):
+        return o.__str__()
+    # enum isn't serializable, so return name
+    if isinstance(o, StatusEnum):
+        return o.name
 
 
 @app.cli.command('db_create')
@@ -189,27 +212,4 @@ def home():
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
 
-
-def task2Dict(row):
-    di = {
-        "task_id": row.task_id,
-        "name": row.name,
-        "description": row.description,
-        "priority": row.priority,
-        "starttime": row.starttime,
-        "endtime": row.endtime,
-        "currenttime": row.currenttime,
-        "createdtime": row.createdtime,
-        "status": row.status
-    }
-
-    return di
-
-def taskConverter(o):
-    # datetime isn't serializable, so "toString" it
-    if isinstance(o, datetime):
-        return o.__str__()
-    # enum isn't serializable, so return name
-    if isinstance(o, StatusEnum):
-        return o.name
 
