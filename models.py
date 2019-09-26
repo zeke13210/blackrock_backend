@@ -1,7 +1,9 @@
 from app import rds
 from sqlalchemy import Column, Integer, String, Enum, DateTime
 from datetime import datetime
-import enum
+import enum, os
+
+db_table = os.environ.get('DB_TABLE','tasks')
 
 class StatusEnum(enum.Enum):
     PENDING = 1
@@ -9,7 +11,7 @@ class StatusEnum(enum.Enum):
     COMPLETED = 3
 
 class Task(rds.Model):
-    __tablename__ = 'tasks'
+    __tablename__ = db_table
 
     task_id     = Column(Integer, primary_key=True)
     name        = Column(String(64), index=True)
