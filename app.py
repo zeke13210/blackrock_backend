@@ -25,6 +25,8 @@ def task2Dict(row):
         "status": row.status
     }
 
+    return di
+
 
 
 def taskConverter(o):
@@ -48,7 +50,7 @@ def db_drop():
 
 @app.cli.command('db_showtable')
 def db_showtable():
-    print Task.__tablename__
+    print(Task.__tablename__)
 
 @app.cli.command('db_seed')
 def db_seed():
