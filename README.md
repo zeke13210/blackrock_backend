@@ -148,7 +148,7 @@ Example Response
 
 POST Create a task - Invalid Minute
 -----------------------------------
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid Minute value
 
 HEADERS
@@ -187,7 +187,7 @@ Example Response
   
 POST Create a task - Invalid Second
 ------------------------------------
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid second value
 
 HEADERS
@@ -226,7 +226,7 @@ Example Response
 
 POST Create a task - Invalid Time
 ---------------------------------
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid total time
 
 Total time cannot be less than 5 seconds
@@ -267,7 +267,7 @@ Example Response
 
 PUT Create a task - Bad Request
 -------------------------------
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid method request
 
 This API requires a POST request
@@ -305,7 +305,7 @@ Example Response
   
 PUT Update task- Bad status
 ---------------------------
-http://127.0.0.1:5000/task_update/1
+>http://127.0.0.1:5000/task_update/1
 Update the specified task with an invalid status
 
 Statuses should be one of the following:
@@ -334,7 +334,7 @@ Example Response
   "error": "422 Unprocessable Entity: Status (STARTING) not valid. Expecting: PENDING, ACTIVE or COMPLETED"
 }
 GET Get task - Bad Task ID
-http://127.0.0.1:5000/task/100000
+>http://127.0.0.1:5000/task/100000
 Request a task that does not exist
 
 
@@ -349,7 +349,7 @@ Example Response
 
 POST Get all tasks - Bad Request
 --------------------------------
-http://127.0.0.1:5000/tasks
+>http://127.0.0.1:5000/tasks
 Request all tasks with an invalid request method
 
 NOTE: We will try to force all errors to return as JSON with a future release
@@ -364,7 +364,7 @@ METHOD NOT ALLOWED
 
 GET Get task
 ------------
-http://127.0.0.1:5000/task/1
+>http://127.0.0.1:5000/task/1
 Return the requested task
 
 EX: http://HOST.URL/task/task_id
@@ -390,7 +390,7 @@ Example Response
 
 POST Create task
 -----------------
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a new task
 
 Only client apps should create new tasks
@@ -431,7 +431,7 @@ Example Response
 
 PUT Update task
 ---------------
-http://127.0.0.1:5000/task_update/1
+>http://127.0.0.1:5000/task_update/1
 Update the specified task
 
 EX: http://HOST.URL/task_update/task_id
@@ -459,7 +459,7 @@ Example Response
 
 GET Get all tasks
 ------------------
-http://127.0.0.1:5000/tasks
+>http://127.0.0.1:5000/tasks
 Return all tasks
 
 
