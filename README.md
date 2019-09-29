@@ -11,26 +11,27 @@ To install and use the blackrock-api container run the below cmds
 >docker pull zeke13210/blackrock:prod
 
 TaskManager API
-
+----------------
 API for Techs of Color - BlackRock - TaskManager challenge
 
 Request project details here:
 
-web: https://techsofcolor.org
-slack: https://technologistsofcolor.slack.com/messages/CDZU6JR3L
-meetup: https://www.meetup.com/Technologists/
-Language
-Error Requests
+  -web: https://techsofcolor.org
+  -slack: https://technologistsofcolor.slack.com/messages/CDZU6JR3L
+  -meetup: https://www.meetup.com/Technologists/
+
+ERROR REQUESTS
+--------------
 
 Create Task
-
+-------------
 POST Create a task - Invalid Name
-http://127.0.0.1:5000/task_create
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid name
 
 HEADERS
 Content-Typeapplication/x-www-form-urlencoded
-BODY urlencoded
+BODY  *urlencoded*
 descriptionBuilding a paper bath
 Optional
 
@@ -52,26 +53,31 @@ runtimeSeconds0
 
 
 Example Request
-Invalid Input Request
+-Invalid Input Request
 curl --location --request POST "http://127.0.0.1:5000/task_create" \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data "description=%3Cstring%3E&name=%3Cstring%3E&priority=2&runtimeHours=%3Cinteger%3E&runtimeMinutes=%3Cinteger%3E&runtimeSeconds=%3Cinteger%3E&status=PENDING"
 Example Response
-422 － Bad Request
+-422 － Bad Request
 {
   "error": "422 Unprocessable Entity: name must be 1 or more alphanumeric characters"
 }
+
+
 POST Create a task - Invalid Priority
-http://127.0.0.1:5000/task_create
+--------------------------------------
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid priority
 
 HEADERS
 Content-Typeapplication/x-www-form-urlencoded
+
 BODY urlencoded
 descriptionBuilding a paper bath
 Optional
 
-nameBuild a bath
+name
+Build a bath
 1 or more alphanumaric characters required
 
 priority11
@@ -97,12 +103,15 @@ Example Response
 {
   "error": "422 Unprocessable Entity: priority (11) must be betwen 1 - 5"
 }
+
 POST Create a task - Invalid Hour
-http://127.0.0.1:5000/task_create
+----------------------------------
+>http://127.0.0.1:5000/task_create
 Create a task with an invalid Hour value
 
 HEADERS
 Content-Typeapplication/x-www-form-urlencoded
+
 BODY urlencoded
 descriptionBuilding a paper bath
 Optional
@@ -133,7 +142,9 @@ Example Response
 {
   "error": "422 Unprocessable Entity: Hour (25) must be less than 24"
 }
+
 POST Create a task - Invalid Minute
+-----------------------------------
 http://127.0.0.1:5000/task_create
 Create a task with an invalid Minute value
 
@@ -170,12 +181,15 @@ Example Response
   "statusCode": "<string>",
   "message": "<string>"
 }
+  
 POST Create a task - Invalid Second
+------------------------------------
 http://127.0.0.1:5000/task_create
 Create a task with an invalid second value
 
 HEADERS
 Content-Typeapplication/x-www-form-urlencoded
+
 BODY urlencoded
 descriptionBuilding a paper bath
 Optional
@@ -206,7 +220,9 @@ Example Response
 {
   "error": "422 Unprocessable Entity: Minute (60) must be less than 60"
 }
+
 POST Create a task - Invalid Time
+---------------------------------
 http://127.0.0.1:5000/task_create
 Create a task with an invalid total time
 
@@ -214,6 +230,7 @@ Total time cannot be less than 5 seconds
 Total time cannot be more than 24 hours
 HEADERS
 Content-Typeapplication/x-www-form-urlencoded
+
 BODY urlencoded
 descriptionBuilding a paper bath
 Optional
@@ -244,7 +261,9 @@ Example Response
 {
   "error": "422 Unprocessable Entity: Total runtime (4 seconds) must be greater than 5 seconds"
 }
+
 PUT Create a task - Bad Request
+-------------------------------
 http://127.0.0.1:5000/task_create
 Create a task with an invalid method request
 
@@ -279,11 +298,10 @@ curl --location --request POST "http://127.0.0.1:5000/task_create" \
   --data "description=&name=Build%20a%20bath&priority=1&runtimeHours=0&runtimeMinutes=4&runtimeSeconds=0"
 Example Response
 405 － Bad Request
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<title>405 Method Not Allowed</title>
-<h1>Method Not Allowed</h1>
-<p>The method is not allowed for the requested URL.</p>
+405 METHOD NOT ALLOWED
+  
 PUT Update task- Bad status
+---------------------------
 http://127.0.0.1:5000/task_update/1
 Update the specified task with an invalid status
 
@@ -325,7 +343,9 @@ Example Response
 {
   "error": "404 Not Found: Task not found"
 }
+
 POST Get all tasks - Bad Request
+--------------------------------
 http://127.0.0.1:5000/tasks
 Request all tasks with an invalid request method
 
@@ -337,11 +357,10 @@ Bad Method Request
 curl --location --request GET "http://127.0.0.1:5000/tasks"
 Example Response
 405 － Method Not Allowed
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<title>405 Method Not Allowed</title>
-<h1>Method Not Allowed</h1>
-<p>The method is not allowed for the requested URL.</p>
+METHOD NOT ALLOWED
+
 GET Get task
+------------
 http://127.0.0.1:5000/task/1
 Return the requested task
 
@@ -365,7 +384,9 @@ Example Response
   "starttime": "2019-09-21 23:27:57.650238",
   "description": "2 and done"
 }
+
 POST Create task
+-----------------
 http://127.0.0.1:5000/task_create
 Create a new task
 
@@ -404,7 +425,9 @@ Example Response
 {
   "message": "Task created"
 }
+
 PUT Update task
+---------------
 http://127.0.0.1:5000/task_update/1
 Update the specified task
 
@@ -430,7 +453,9 @@ Example Response
 {
   "message": "Task updated"
 }
+
 GET Get all tasks
+------------------
 http://127.0.0.1:5000/tasks
 Return all tasks
 
