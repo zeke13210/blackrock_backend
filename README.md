@@ -13,10 +13,10 @@ INSTALLATION
 -------------
 To install and use the blackrock-api container run the below cmds
 
-->docker pull zeke13210/blackrock:prod
-->docker container run -it -p 5000:5000 zeke13210/blackrock:prod
-->cd app/blackrock_backend
-->python app.py
+<p> >docker pull zeke13210/blackrock:prod</p>
+<p> >docker container run -it -p 5000:5000 zeke13210/blackrock:prod</p>
+<p> >cd app/blackrock_backend</p>
+<p> >python app.py</p>
 
 
 TaskManager API
