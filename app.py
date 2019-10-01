@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 import enum, json, os, sys
 
 app = Flask(__name__)
-app.config.from_object(Config)
-rds = SQLAlchemy(app)
+app.config.from_object(Config) #add config of AWS postgres db
+rds = SQLAlchemy(app) #initialize app with sql alchemy
 app.debug = True
 
 from models import *
@@ -18,6 +18,7 @@ from taskthread import TaskThread
 # Convert a task sqlalchemy database row to a dict, 
 # so that it can be converted to JSON. Used by Flask.Response()
 def task2Dict(row):
+    #takes row and converts to json obj and returns the obj
     di = {
         "task_id": row.task_id,
         "name": row.name,
@@ -37,11 +38,58 @@ def task2Dict(row):
 # so that they can be converted to JSON. Used by Flask.Response()
 def taskConverter(o):
     # datetime isn't serializable, so "toString" it
+    #if input is datetime obj return string of obj
     if isinstance(o, datetime):
         return o.__str__()
     # enum isn't serializable, so return name
     if isinstance(o, StatusEnum):
         return o.name
+
+
+@app.cli.command('db_create')
+def db_create():
+    """
+    Execute with cmd: "flask db_create" to create
+    all tables
+    """
+    rds.create_all()
+    print('Database created!')
+
+@app.cli.command('db_drop')
+def db_drop():
+    """
+    Execute with cmd: "flask db_drop" to remove tables
+
+    """
+    rds.drop_all()
+    print('Database dropped!')
+
+@app.cli.command('db_seed')
+def db_seed():
+    """
+    When executed with flask cmd will create test data
+    based on tsk1 & tsk2
+
+    """
+    tsk1 = Task(
+                name='Cook Eggs',
+                description='Cooking eggs for the family',
+                priority=1,
+                status='ACTIVE'
+                )
+
+    tsk2 = Task(
+                name='Boil Water',
+                description='Heating up water on the stove',
+                priority=3,
+                status='PENDING'
+                )
+
+    
+    rds.session.add(tsk1)
+    rds.session.add(tsk2)
+    rds.session.commit()
+    print('Database seeded')
 
 
 @app.errorhandler(400)
@@ -60,7 +108,13 @@ def resource_unprocessable(e):
 # API: Route to Create a task 
 @app.route("/task_create", methods=["POST"])
 def task_create():
+    """
+    recieves HTML form and mapps the below fields then validates form fields
+    using certain conditions
 
+    description, name, priority, run time hours, run time minutes and run time seconds
+
+    """
     try:
         description = request.form['description']
         name = request.form['name']
@@ -121,6 +175,10 @@ def task_create():
 # API: Route to get the task data for the specified taskId
 @app.route("/task/<int:taskId>", methods=["GET"])
 def task(taskId):
+    """
+    function returns JSOn of task when API hits /task/ task ID
+    if no id found then returns error msg task not found
+    """
     if request.method == 'GET':
         row = Task.query.filter(Task.task_id == taskId).one_or_none()
         
@@ -133,6 +191,10 @@ def task(taskId):
 # API: Route to update the task data for the specified taskId
 @app.route("/task_update/<int:taskId>", methods=["PUT"])
 def task_update(taskId):
+    """
+    function updates task when api gives task ID. replaces old time with
+    current time of when API is called
+    """
     if request.method == 'PUT':
         row = Task.query.filter(Task.task_id == taskId).one_or_none()
         if row is None:
@@ -159,6 +221,7 @@ def task_update(taskId):
 # API: Route to get All tasks
 @app.route("/tasks", methods=["GET"])
 def tasks():
+
     task_query = Task.query
     if 'status' in request.args:
         status = request.args.get('status')
@@ -173,6 +236,7 @@ def tasks():
         # Set status filter
         task_query = task_query.filter(Task.status.in_(stat_list))
         
+
     dic_arr = []
     for row in task_query.all():
         taskitem = task2Dict(row)
