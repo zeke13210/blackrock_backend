@@ -56,6 +56,7 @@ class TaskThread(threading.Thread):
                 # Verify if PENDING tasks should be set to ACTIVE
                 if row.status == StatusEnum.PENDING:
                     if row.starttime < self.currenttime:
+                        row.starttime = self.currenttime
                         row.status = "ACTIVE"
                         row_updated = 1
 
