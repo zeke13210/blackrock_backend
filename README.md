@@ -1,13 +1,6 @@
 # blackrock_backend
 This repo is meant to hold the backend code for the TOC + Blackrock coding project
 
-KD: I could not access the server outside of the container with "flask run" instead, I had to use this command
-flask run --host=0.0.0.0
-
-<ul>
-  <li>test</li>
-  <li>test2</li>
-</ul>
 
 INSTALLATION
 -------------
@@ -467,6 +460,4 @@ GET Get all tasks
 ------------------
 >http://127.0.0.1:5000/tasks
 Return all tasks
-
-
 
