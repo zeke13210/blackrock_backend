@@ -194,10 +194,10 @@ def task_update(taskId):
     function updates task when api gives task ID. replaces old time with
     current time of when API is called
     """
-    if request.method == 'PUT':
-        row = Task.query.filter(Task.task_id == taskId).one_or_none()
-        if row is None:
-            abort(404, description="Task not found")
+ 
+    row = Task.query.filter(Task.task_id == taskId).one_or_none()
+    if row is None:
+        abort(404, description="Task not found")
 
         currenttime = datetime.now()
         row.currenttime = currenttime
@@ -207,7 +207,7 @@ def task_update(taskId):
             
             # Verify that the provided status is valid
             status_valid = False
-            for name, member in StatusEnum.__members__.items():
+            for name in StatusEnum.__members__.items():
                 if (name == status):
                     status_valid = True
             if status_valid:
