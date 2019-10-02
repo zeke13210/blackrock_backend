@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Enum, DateTime
 from datetime import datetime, timedelta
 import enum, json, os, sys
 
+
 app = Flask(__name__)
 app.config.from_object(Config) #add config of AWS postgres db
 rds = SQLAlchemy(app) #initialize app with sql alchemy
@@ -64,8 +65,13 @@ def db_drop():
     rds.drop_all()
     print('Database dropped!')
 
+@app.cli.command('db_showtable')
+def db_showtable():
+    print(Task.__tablename__)
+
 @app.cli.command('db_seed')
 def db_seed():
+
     """
     When executed with flask cmd will create test data
     based on tsk1 & tsk2
@@ -75,16 +81,23 @@ def db_seed():
                 name='Cook Eggs',
                 description='Cooking eggs for the family',
                 priority=1,
-                status='ACTIVE'
+                status='ACTIVE',
+                starttime = currenttime,
+                currenttime = currenttime,
+                createdtime = currenttime,
+                endtime = endtime
                 )
 
     tsk2 = Task(
                 name='Boil Water',
                 description='Heating up water on the stove',
                 priority=3,
-                status='PENDING'
+                status='PENDING',
+                starttime = currenttime,
+                currenttime = currenttime,
+                createdtime = currenttime,
+                endtime = endtime
                 )
-
     
     rds.session.add(tsk1)
     rds.session.add(tsk2)
@@ -289,7 +302,7 @@ def thread_status():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1')
 
 # Do not start the task thread if a command line method is executed
 if not (len(sys.argv) > 1 and sys.argv[1] in app.cli.commands):
