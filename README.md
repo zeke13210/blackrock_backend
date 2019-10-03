@@ -1,6 +1,17 @@
 # blackrock_backend
-This repo is meant to hold the backend code for the TOC + Blackrock coding project
+This repo is meant to hold the backend code for the Technologist of Color + Blackrock coding project. The project guildelines and tasks include building a backend API with 4 endpoints described below
 
+1. postTask/
+  Description: Add a task based on the parameters: Name, Description, Priority and Max run time
+
+2. getTasks/
+  Description: pull all tasks with the status of ACTIVE and order by priority
+
+3. getTaskById/
+  Description: Pull a task based off of a given ID value
+  
+4. updateTaskById/
+  Description: Update a task based on a given task ID value
 
 
 ### Getting Started
