@@ -220,7 +220,7 @@ def tasks():
 
 @app.route('/')
 def home():
-    return  jsonify(message='No Path specified! ' + os.environ.get('POST_URL')), 400
+    return  jsonify(message='No Path specified!'), 400
 
 
 # ADMIN: Enable the task thread to poll the database
