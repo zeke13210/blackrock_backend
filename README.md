@@ -58,12 +58,15 @@ To access the admin API for the thread service docs please refer to the <a href=
 
 Contribution Guidelines
 -----------------------
+If you're interested in contributing and futher developing this project please refer to the contribution guildelines
 
 Authors
 --------
 This backend API was designed and developed by the below list of dedicated developers apart of the Technologist of Color members taking part in the Blackrock Coding challenge
 
 <h3>Current Team</h3>
-Kenyatta Daniels
-Justin Traille
-Zachary Farley
+<ul>
+  <li>Kenyatta Daniels</li>
+  <li>Justin Traille</li>
+  <li>Zachary Farley</li>
+</ul>
