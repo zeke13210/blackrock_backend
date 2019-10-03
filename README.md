@@ -14,7 +14,7 @@ This repo is meant to hold the backend code for the Technologist of Color + Blac
   Description: Update a task based on a given task ID value
 
 
-### Getting Started
+## Getting Started
 
 To download and utilize this API on your local machine please follow the below instructions
 
@@ -31,6 +31,8 @@ To download and utilize this API on your local machine please follow the below i
 4. Once build is complete run cmd
 
 >docker-compose up
+
+5. Navigate to localhost:5000 then follow the below docs to utilize the API.
 
 
 ### Standard TaskManager API
