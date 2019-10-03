@@ -5,8 +5,6 @@ services:
 
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
-script:
-  - export POST_URL=$POST_URL
   - echo $POST_URL
 
 deploy:
