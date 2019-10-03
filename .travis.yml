@@ -3,11 +3,12 @@ sudo: required
 services:
   - docker
 
+env:
+  global:
+      - POST_URL=fjdsaoifjaiofj
+
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
-  - echo test
-  - echo $POST_URL
-  - echo test2
 
 after_success:
   - echo test
