@@ -3,3 +3,6 @@ app.pyc
 config.pyc
 models.pyc
 dev-variables.env
+
+#cache files
+_pycache_/
