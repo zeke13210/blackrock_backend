@@ -1,3 +1,5 @@
 #don't track changes in below file
+app.pyc
+config.pyc
+models.pyc
 dev-variables.env
-*.pyc
