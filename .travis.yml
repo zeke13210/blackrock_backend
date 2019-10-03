@@ -3,9 +3,6 @@ sudo: required
 services:
   - docker
 
-env:
-  global:
-      - POST_URL= $POST_URL
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
 
