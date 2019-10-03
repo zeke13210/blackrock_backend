@@ -4,14 +4,31 @@ from config import Config
 from sqlalchemy import Column, Integer, String, Enum, DateTime
 from datetime import datetime, timedelta
 import enum, json, os, sys
-
+from models import StatusEnum
+db_table = os.environ.get('DB_TABLE','tasks')
 
 app = Flask(__name__)
 app.config.from_object(Config) #add config of AWS postgres db
 rds = SQLAlchemy(app) #initialize app with sql alchemy
 app.debug = True
 
-from models import *
+class Task(rds.Model):
+
+    __tablename__ = db_table
+    
+    task_id     = Column(Integer, primary_key=True)
+    name        = Column(String(64), index=True)
+    description = Column(String(200))
+    priority    = Column(Integer)
+    starttime   = Column(DateTime)
+    endtime     = Column(DateTime)
+    currenttime = Column(DateTime)
+    createdtime = Column(DateTime)
+    status      = Column(Enum(StatusEnum), default=StatusEnum.PENDING)
+
+    def __repr__(self):
+        return '{}'.format(self.name)
+
 import cli
 from taskthread import TaskThread
 
@@ -245,7 +262,7 @@ def thread_status():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1')
+    app.run(host='0.0.0.0')
 
 # Do not start the task thread if a command line method is executed
 if not (len(sys.argv) > 1 and sys.argv[1] in app.cli.commands):

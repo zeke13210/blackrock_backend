@@ -1,5 +1,6 @@
 import threading, logging, time
-from models import Task, StatusEnum
+from models import StatusEnum
+from app import Task
 from datetime import datetime, timedelta
 
 logging.basicConfig(level=logging.DEBUG,

@@ -1,5 +1,5 @@
 from app import rds, app
-from models import Task
+from app import Task
 from datetime import datetime, timedelta
 
 @app.cli.command('db_create')
