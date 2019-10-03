@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker
 env:
-  - "POST_URL=tesfidgnsa"
+  - POST_URL=tesfidgnsa
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
 
