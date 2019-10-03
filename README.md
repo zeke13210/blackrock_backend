@@ -61,4 +61,9 @@ Contribution Guidelines
 
 Authors
 --------
-To see the list of the current maintainers and contributors please refer to the <a href=" ">Authors doc</a>
+This backend API was designed and developed by the below list of dedicated developers apart of the Technologist of Color members taking part in the Blackrock Coding challenge
+
+<h3>Current Team</h3>
+Kenyatta Daniels
+Justin Traille
+Zachary Farley
