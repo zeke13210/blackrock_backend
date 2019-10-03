@@ -47,63 +47,6 @@ def taskConverter(o):
         return o.name
 
 
-@app.cli.command('db_create')
-def db_create():
-    """
-    Execute with cmd: "flask db_create" to create
-    all tables
-    """
-    rds.create_all()
-    print('Database created!')
-
-@app.cli.command('db_drop')
-def db_drop():
-    """
-    Execute with cmd: "flask db_drop" to remove tables
-
-    """
-    rds.drop_all()
-    print('Database dropped!')
-
-@app.cli.command('db_showtable')
-def db_showtable():
-    print(Task.__tablename__)
-
-@app.cli.command('db_seed')
-def db_seed():
-
-    """
-    When executed with flask cmd will create test data
-    based on tsk1 & tsk2
-
-    """
-    tsk1 = Task(
-                name='Cook Eggs',
-                description='Cooking eggs for the family',
-                priority=1,
-                status='ACTIVE',
-                starttime = currenttime,
-                currenttime = currenttime,
-                createdtime = currenttime,
-                endtime = endtime
-                )
-
-    tsk2 = Task(
-                name='Boil Water',
-                description='Heating up water on the stove',
-                priority=3,
-                status='PENDING',
-                starttime = currenttime,
-                currenttime = currenttime,
-                createdtime = currenttime,
-                endtime = endtime
-                )
-    
-    rds.session.add(tsk1)
-    rds.session.add(tsk2)
-    rds.session.commit()
-    print('Database seeded')
-
 
 @app.errorhandler(400)
 def invalid_request(e):
