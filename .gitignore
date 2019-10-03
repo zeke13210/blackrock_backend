@@ -3,3 +3,7 @@ app.pyc
 config.pyc
 models.pyc
 dev-variables.env
+
+#cache files
+__pycache__/
+.vscode/
