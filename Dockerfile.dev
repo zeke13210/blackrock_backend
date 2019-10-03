@@ -1,4 +1,4 @@
-FROM zeke13210/blackrock:dev
+FROM zeke13210/blackrock:jet
 
 WORKDIR '/app'
 
