@@ -6,3 +6,4 @@ dev-variables.env
 
 #cache files
 __pycache__/*
+.vscode/
