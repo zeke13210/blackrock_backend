@@ -9,7 +9,8 @@ before install:
   - echo $POST_URL
   - echo test2
 
-
+after_success:
+  - echo "$POST_URL"
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
