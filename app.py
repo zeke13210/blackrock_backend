@@ -245,7 +245,7 @@ def thread_status():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1')
 
 # Do not start the task thread if a command line method is executed
 if not (len(sys.argv) > 1 and sys.argv[1] in app.cli.commands):
