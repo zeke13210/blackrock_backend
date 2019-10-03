@@ -1,7 +1,7 @@
-FROM zeke13210/blackrock:jet
+FROM zeke13210/blackrock:dev
 
 WORKDIR '/app'
 
 COPY . .
 
-CMD [ "python3", "app.py" ]
+CMD [ "flask", "run" ]
