@@ -3,17 +3,9 @@ sudo: required
 services:
   - docker
 
-env:
-  global:
-      - POST_URL=fjdsaoifjaiofj
-
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
 
-after_success:
-  - echo test
-  - echo $POST_URL
-  - echo test2
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
