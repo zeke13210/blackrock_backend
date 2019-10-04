@@ -38,7 +38,7 @@ To download and utilize this API on your local machine please follow the below i
 ### Standard TaskManager API
 
 To access the standard API docs for how to use the API please refer to the
-<a href="https://documenter.getpostman.com/view/8843466/SVtPXARL?version=latest">Standard docs</a>
+<a href="https://documenter.getpostman.com/view/8843466/SVmySJ2t?version=latest">Standard docs</a>
 
 ### ERROR Testing API
 
@@ -50,7 +50,7 @@ To access the Error testing API please refer to the
 To access the admin API for the thread service docs please refer to the <a href="https://documenter.getpostman.com/view/8843466/SVtPXARH?version=latest">Admin API docs</a>
 
 ### Contribution Guidelines
-If you're interested in contributing and futher developing this project please refer to the contribution guildelines
+If you're interested in contributing and futher developing this project please refer to the <a href="https://github.com/zeke13210/blackrock_backend/wiki/Contribution-Docs">contribution guildelines</a>
 
 ### Authors
 This backend API was designed and developed by the below list of dedicated developers apart of the Technologist of Color members taking part in the Blackrock Coding challenge
