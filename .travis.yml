@@ -6,6 +6,11 @@ services:
 before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
 
+after_success:
+  - docker build -t zeke13210/blackrock:prod ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push zeke13210/blackrock:prod
+
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
