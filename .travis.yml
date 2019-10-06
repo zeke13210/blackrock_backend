@@ -7,7 +7,7 @@ before install:
   - docker build -t blackrock/backend -f Dockerfile.dev
 
 after_success:
-  - docker build -t zeke13210/blackrock:prod ./server
+  - docker build -t zeke13210/blackrock:prod
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push zeke13210/blackrock:prod
 
