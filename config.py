@@ -9,6 +9,6 @@ class Config(object):
         port = os.environ['RDS_PORT']
         postURL = "postgresql://" + user + ":" + password + "@" + host + ":" + port + "/" + dbName
         SQLALCHEMY_DATABASE_URI = postURL
-    else:   # Dev
+    else:       # Dev
         SQLALCHEMY_DATABASE_URI = os.environ.get('POST_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
