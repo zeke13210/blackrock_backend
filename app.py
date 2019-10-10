@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Enum, DateTime
 from datetime import datetime, timedelta
 import enum, json, os, sys
 from models import StatusEnum
+import threading
 db_table = os.environ.get('DB_TABLE','tasks')
 
 app = Flask(__name__)
@@ -226,39 +227,56 @@ def home():
 # ADMIN: Enable the task thread to poll the database
 @app.route("/admin/thread_start", methods=["GET"])
 def thread_sart():
-    if t.thread_state > 0:
-        return jsonify(message='Thread already ACTIVE')
+    t = threading.currentThread()
+    for t in threading.enumerate():
+        if t.name == 'TaskmanThread':
+            if t.thread_state > 0:
+                return jsonify(message='Thread already ACTIVE')
 
-    t.activate()
-    return jsonify(message='Thread REACTIVATED: May take up to 60 secs to restart')
+            t.activate()
+            return jsonify(message='Thread REACTIVATED: May take up to 60 secs to restart')
+
+    return abort(404, description="Thread not found")
 
 
 # ADMIN: Stop the task thread from polling the database
 @app.route("/admin/thread_pause", methods=["GET"])
 def thread_pause():
-    t.pause()
-    return jsonify(status = 'PAUSED')
+    t = threading.currentThread()
+    for t in threading.enumerate():
+        if t.name == 'TaskmanThread':
+            t.pause()
+            return jsonify(status = 'PAUSED')
+
+    return abort(404, description="Thread not found")
 
 
 # ADMIN: Get a status on the task thread
 @app.route("/admin/thread_status", methods=["GET"])
 def thread_status():
+    t = threading.currentThread()
+    for t in threading.enumerate():
 
-    if t.thread_state == 0:
-        currenttime = datetime.now()
-        sleep_time = round(t.sleeptime - (currenttime - t.currenttime).total_seconds())
-        di = {'status':'PAUSED', 'message':'Resting for {0} secs'.format(sleep_time)}
-        return jsonify(di)
+        if t.name == 'TaskmanThread':
+            if t.thread_state == 0:
+                currenttime = datetime.now()
+                sleep_time = round(t.sleeptime - (currenttime - t.currenttime).total_seconds())
+                di = {'status':'PAUSED', 'message':'Resting for {0} secs'.format(sleep_time)}
+                return jsonify(di)
 
-    if t.thread_state == 1:
-        di = {'status':'ACTIVE', 'message':'Actively processing'}
-        return jsonify(di)
+            if t.thread_state == 1:
+                di = {'status':'ACTIVE', 'message':'Actively processing'}
+                return jsonify(di)
 
-    if t.thread_state == 2:
-        currenttime = datetime.now()
-        sleep_time = round(t.sleeptime - (currenttime - t.currenttime).total_seconds())
-        di = {'status':'ACTIVE', 'message':'Resting for {0} secs'.format(sleep_time)}
-        return jsonify(di)
+            if t.thread_state == 2:
+                currenttime = datetime.now()
+                sleep_time = round(t.sleeptime - (currenttime - t.currenttime).total_seconds())
+                di = {'status':'ACTIVE', 'message':'Resting for {0} secs'.format(sleep_time)}
+                return jsonify(di)
+            break
+
+    return abort(404, description="Thread not found")
+
 
 
 if __name__ == '__main__':

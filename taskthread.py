@@ -28,8 +28,7 @@ class TaskThread(threading.Thread):
         self.sleeptime = 60
 
     def activate(self):
-        self.thread_state = 1
-        self.sleeptime = 10
+        self.thread_state = 2
 
     def run(self):
         while True:
@@ -43,6 +42,7 @@ class TaskThread(threading.Thread):
 
             # Get all PENDING or ACTIVE tasks, sorted by priority
             self.thread_state = 1
+            self.sleeptime = 10
             task_list = Task.query.filter(Task.status != "COMPLETED").order_by(Task.priority).all()
             for row in task_list:
                 logging.info('Found a %s task' % row.status.name)
