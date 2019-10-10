@@ -7,6 +7,3 @@ class StatusEnum(enum.Enum):
     PENDING = 1
     ACTIVE = 2
     COMPLETED = 3
-
-
-
