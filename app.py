@@ -14,9 +14,7 @@ rds = SQLAlchemy(app) #initialize app with sql alchemy
 app.debug = True
 
 class Task(rds.Model):
-
     __tablename__ = db_table
-    
     task_id     = Column(Integer, primary_key=True)
     name        = Column(String(64), index=True)
     description = Column(String(200))
