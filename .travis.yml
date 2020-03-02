@@ -2,13 +2,13 @@ language: generic
 
 deploy:
   provider: elasticbeanstalk
+  access_key_id:
+    secure: $AWS_ACCESS_KEY  
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
   region: "us-east-1"
   app: "Blackrock Backend API"
   env: "BlackrockBackendApi-env"
   bucket_name: "elasticbeanstalk-us-east-1-579421520652"
-  on:
-    branch: dev
-  access_key_id:
-    secure: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+
+
