@@ -1,11 +1,12 @@
 {
-    "AWSEBDockerrunVersion": 1,
-    "containerDefinitions": [
-        {
-            "name": "server",
-            "image": "zeke13210/blackrock:jet",
-            "hostname": "api",
-            "essential": false
-        }
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "zeke13210/blackrock:prod",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "7000"
+      }
     ]
-}
+  }
