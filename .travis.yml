@@ -10,3 +10,5 @@ deploy:
   env: blackrock_api-env
   on:
     repo: zeke13210/blackrock_backend
+  bucket_name: elasticbeanstalk-us-east-1-579421520652
+  bucket_path: blackrock_api
