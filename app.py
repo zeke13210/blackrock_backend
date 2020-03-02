@@ -10,6 +10,7 @@ db_table = os.environ.get('DB_TABLE','tasks')
 
 app = Flask(__name__)
 app.config.from_object(Config) #add config of AWS postgres db
+print(Config.SQLALCHEMY_DATABASE_URI)
 rds = SQLAlchemy(app) #initialize app with sql alchemy
 app.debug = True
 
@@ -278,7 +279,7 @@ def thread_status():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port="7000")
 
 # Do not start the task thread if a command line method is executed
 if not (len(sys.argv) > 1 and sys.argv[1] in app.cli.commands):

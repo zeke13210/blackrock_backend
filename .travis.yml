@@ -1,26 +1,14 @@
 language: generic
-sudo: required
-services:
-  - docker
-
-before install:
-  - docker build -t blackrock/backend -f Dockerfile.dev
-
-after_success:
-  - docker build -t zeke13210/blackrock:prod .
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push zeke13210/blackrock:prod
 
 deploy:
   provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "BlackRockBackEnd"
-  env: "Blackrockbackend-env"
-  bucket_name: "elasticbeanstalk-us-east-1-398080922284"
-  bucket_path: "BlackRockBackEnd"
-  on:
-    branch: master
   access_key_id:
-    secure: $AWS_ACCESS_KEY
+    secure: $AWS_ACCESS_KEY  
   secret_access_key:
     secure: $AWS_SECRET_KEY
+  region: "us-east-1"
+  app: "Blackrock Backend API"
+  env: "BlackrockBackendApi-env"
+  bucket_name: "elasticbeanstalk-us-east-1-579421520652"
+
+

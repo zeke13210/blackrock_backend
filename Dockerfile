@@ -1,7 +1,5 @@
 FROM zeke13210/blackrock:jet
-
-WORKDIR '/app'
-
+WORKDIR '/app/'
 COPY . .
-EXPOSE 5000
-CMD [ "python3", "app.py" ]
+EXPOSE 7000
+CMD [ "python3", "app.py"]
