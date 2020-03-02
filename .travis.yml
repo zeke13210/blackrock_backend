@@ -4,7 +4,7 @@ services:
   - docker
 
 before install:
-  - docker build -t blackrock/backend -f Dockerfile.dev
+  - docker build -t blackrock/backend -f Dockerfile
 
 after_success:
   - docker build -t zeke13210/blackrock:prod .
@@ -14,10 +14,10 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
-  app: "BlackRockBackEnd"
-  env: "Blackrockbackend-env"
-  bucket_name: "elasticbeanstalk-us-east-1-398080922284"
-  bucket_path: "BlackRockBackEnd"
+  app: "Blackrock Backend API"
+  env: "BlackrockBackendApi-env"
+  bucket_name: "elasticbeanstalk-us-east-1-579421520652"
+  bucket_path: "Blackrock Backend API"
   on:
     branch: master
   access_key_id:
