@@ -38,7 +38,7 @@ To download and utilize this API on your local machine please follow the below i
 ### Standard TaskManager API
 
 To access the standard API docs for how to use the API please refer to the
-<a href="https://documenter.getpostman.com/view/8843466/SVmySJ2t?version=latest">Standard docs</a>
+<a href="https://documenter.getpostman.com/view/8974733/SzRw1qna?version=latest#a73e29ea-c949-4649-a807-a2a81beecc29">Standard docs</a>
 
 ### ERROR Testing API
 
