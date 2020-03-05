@@ -9,7 +9,7 @@ class Config(object):
         # port = os.environ['RDS_PORT']
     dbName = "TaskManagerDB"
     user = "postgres"
-    password = "r+4dnl7"
+    password = "r+4dnl.7"
     hostName = "blackrockdbinstance.c0uikdugnayd.us-east-1.rds.amazonaws.com"
     port = "5432"
     postURL = "postgresql://" + user + ":" + password + "@" + hostName + ":" + port + "/" + dbName
