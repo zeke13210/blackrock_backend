@@ -1,0 +1,49 @@
+Unit Test Example:
+
+
+import unittest
+import requests
+import datetime
+import json
+
+class MyTest(unittest.TestCase): 
+
+    def setUp(self):
+        pass
+  
+    # Returns True or False.  
+    def test_create_event(self):         
+        # Test Create Events
+        API_ENDPOINT = "http://127.0.0.1:5000/events"
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        data = {"events":{"name":"Spicy Lola Pepper contest", "created_by" : "heather", "status": "pending", "start_time": str(datetime.datetime.utcnow()), "end_time": str(datetime.datetime.utcnow()), "description": " Woot woot", "location": "Atlanta, GA"}}
+        response = requests.post(url = API_ENDPOINT, data = json.dumps(data), headers=headers)
+        print(r.text, r.status_code) 
+        
+        assert response.status_code == 200 # it will usually blow up at this point if you had changes
+        # This comes in as json type so json.loads converts to a dictionary
+        resp_body = json.loads(response.text)
+        assert resp_body['created_by'] == 'Heather'
+        assert resp_body['status'] == pending
+        # And so on with the other fields
+        
+  
+if __name__ == '__main__': 
+    unittest.main()
+    
+*************************************************************************************
+So Flask actually recommends this for their Unit Testing, Ive never tried it, if interested:
+
+import my_app
+import unittest
+
+
+class MyTestCase(unittest.TestCase):
+
+    def setUp(self):
+        my_app.app.testing = True
+        self.app = my_app.app.test_client()
+
+    def test_home(self):
+        result = self.app.get('/')
+        # Make your assertions
